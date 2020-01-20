@@ -14,6 +14,15 @@ namespace Asp.NetMVCwithAjaxCrud.Controllers
         {
             _context = new Context();
         }
+        public ActionResult getUser()
+        {
+            //DatabaseEntities db = new DatabaseEntities();
+            return Json(_context.User.Select(x => new
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList(), JsonRequestBehavior.AllowGet);
+        }
         public ActionResult Index()
         {
             return View();

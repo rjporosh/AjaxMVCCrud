@@ -1,5 +1,17 @@
 ﻿$(document).ready(function () {
     loadData();
+    $.ajax({
+        type: "GET",
+        url: "/Home/getUser",
+        data: "{}",
+        success: function (data) {
+            var s = '<option value="-1">Please Select a User</option>';
+            for (var i = 0; i < data.length; i++) {
+                s += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
+            }
+            $("#usersDropdown").html(s);
+        }
+    });  
 });
 function loadData() {
     $.ajax({
